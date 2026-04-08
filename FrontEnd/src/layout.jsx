@@ -1,3 +1,7 @@
+import { Outlet } from "react-router";
+import Filterurl from "./components/Filterurl/Filterurl";
+import Chatbot from "./components/Chatbot/Chatbot";
+
 export default function DashboardLayout() {
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
@@ -8,6 +12,8 @@ export default function DashboardLayout() {
       <div className="p-4">
         <Outlet />
       </div>
+
+      <Chatbot />
     </div>
   );
 }

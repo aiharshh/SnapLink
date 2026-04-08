@@ -230,12 +230,29 @@ async function processSingleLink(link, LinkModel) {
       updateData.status = "updated";
       updateData.updateSummary = result.changes;
       updateData.lastContentText = newContent;
+      updateData.$push = {
+        updateHistory: {
+          timestamp: new Date(),
+          changes: result.changes
+        }
+      };
     } else {
       updateData.status = "up-to-date";
       console.log(`[No Update] For ${link.title}.`);
     }
   }
-  await LinkModel.findByIdAndUpdate(link._id, { $set: updateData });
+  
+  // Use $set for standard fields, and $push for arrays if it exists in updateData
+  const updateOp = { $set: {} };
+  for (const key in updateData) {
+      if (key === "$push") {
+          updateOp.$push = updateData.$push;
+      } else {
+          updateOp.$set[key] = updateData[key];
+      }
+  }
+
+  await LinkModel.findByIdAndUpdate(link._id, updateOp);
 }
 
 // --- VERCEL SERVERLESS HANDLER ---

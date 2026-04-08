@@ -42,11 +42,13 @@ app.use(cookieParser());
 import healthCheckRoutes from "./routes/healthcheck.routes.js";
 import userRouters from "./routes/user.routes.js";
 import linkRouters from "./routes/links.routes.js";
+import chatRouters from "./routes/chat.routes.js";
 
 // Using routes
 app.use("/api/healthcheck", healthCheckRoutes);
 app.use("/api/v1/users", userRouters);
 app.use("/api/v1/links", linkRouters);
+app.use("/api/v1/chat", chatRouters);
 
 // Error handling middleware
 app.use(errorHandler);

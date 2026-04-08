@@ -12,6 +12,7 @@ import {
   ForgotPassword,
   ResetPassword
 } from "./components/index.js";
+import Chatbot from "./components/Chatbot/Chatbot";
 
 import {
   createBrowserRouter,
@@ -62,6 +63,7 @@ function DashboardLayout() {
         <div className="p-4">
           <Outlet />
         </div>
+        <Chatbot />
       </div>
     </FilterContext.Provider>
   );

@@ -162,6 +162,12 @@ const linkSchema = new Schema(
       type: String,
       default: "",
     },
+    updateHistory: [
+      {
+        timestamp: { type: Date, default: Date.now },
+        changes: { type: String }
+      }
+    ],
     lastContentText: {
       type: String,
       select: false, // Hides this large field from default API responses
